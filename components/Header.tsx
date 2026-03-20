@@ -10,7 +10,7 @@ export default function Header() {
         <nav className="flex gap-4 font-semibold text-sm">
           <Link href="/archief" className="hover:text-secondary">Archief</Link>
           <Link href="/gids" className="hover:text-secondary">De Gids</Link>
-          <Link href="/klaagmuur" className="hover:text-secondary">Klaagmuur</Link>
+          <Link href="/bijsluiter" className="hover:text-secondary">De Bijsluiter</Link>
         </nav>
       </div>
     </header>
