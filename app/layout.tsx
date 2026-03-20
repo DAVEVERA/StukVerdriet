@@ -24,9 +24,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="nl" className={inter.variable}>
-      <body className="bg-background text-foreground min-h-screen flex flex-col font-sans mb-24">
+      <body className="bg-background text-foreground min-h-screen flex flex-col font-sans mb-32 selection:bg-secondary/30 selection:text-foreground">
+        <div className="absolute top-0 right-0 -z-10 w-[600px] h-[600px] bg-primary/20 blur-[120px] rounded-full pointer-events-none opacity-50"></div>
+        <div className="absolute bottom-0 left-0 -z-10 w-[400px] h-[400px] bg-secondary/10 blur-[100px] rounded-full pointer-events-none opacity-50"></div>
         <Header />
-        <main className="flex-grow container mx-auto px-4 py-8 max-w-2xl">
+        <main className="flex-grow container mx-auto px-6 py-12 max-w-4xl z-10 w-full animate-in fade-in duration-500">
           {children}
         </main>
         <AudioPlayer />
