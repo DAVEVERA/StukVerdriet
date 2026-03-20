@@ -9,9 +9,15 @@ interface Episode {
 }
 
 async function getEpisodes(): Promise<Episode[]> {
-  const res = await fetch('http://localhost:8000/episodes/', { next: { revalidate: 3600 } })
-  if (!res.ok) return []
-  return res.json()
+  try {
+    // In productie dynamisch via env variable targeten
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/episodes/`, { next: { revalidate: 3600 } })
+    if (!res.ok) return []
+    return res.json()
+  } catch (error) {
+    console.warn("API was offline tijdens build of dev:", error)
+    return []
+  }
 }
 
 export default async function HomePage() {
