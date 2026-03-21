@@ -10,13 +10,22 @@ interface Episode {
   published_at: string;
 }
 
+import { supabase } from '@/lib/supabaseClient'
+
 async function getEpisodes(): Promise<Episode[]> {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/episodes/`, { next: { revalidate: 3600 } })
-    if (!res.ok) return []
-    return res.json()
+    const { data: episodes, error } = await supabase
+      .from('episodes')
+      .select('*')
+      .order('published_at', { ascending: false });
+
+    if (error) {
+      console.warn("Supabase query mislukt:", error);
+      return [];
+    }
+    return episodes || [];
   } catch (error) {
-    console.warn("API was offline tijdens build of dev:", error)
+    console.warn("Fout bij ophalen episodes:", error)
     return []
   }
 }
