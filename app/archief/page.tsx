@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { usePlayerStore } from '@/store/usePlayerStore'
 
 // Mock data, in production fetching from FastAPI
@@ -10,13 +11,19 @@ const mockEpisodes = [
 ]
 const allTags = ['Intro', 'Rouw', 'Behandeling', 'Verwerking']
 
-export default function Archief() {
+function ArchiefContent() {
   const [activeTag, setActiveTag] = useState<string | null>(null)
+  const searchParams = useSearchParams()
+  const query = searchParams.get('q')?.toLowerCase() || ''
   const { playEpisode } = usePlayerStore()
 
-  const filteredEpisodes = activeTag 
-    ? mockEpisodes.filter(e => e.tags.includes(activeTag))
-    : mockEpisodes
+  const filteredEpisodes = mockEpisodes.filter(e => {
+    const matchesTag = activeTag ? e.tags.includes(activeTag) : true
+    const matchesQuery = query 
+      ? e.title.toLowerCase().includes(query) || e.description.toLowerCase().includes(query)
+      : true
+    return matchesTag && matchesQuery
+  })
 
   return (
     <div className="space-y-12 pb-20">
@@ -77,5 +84,13 @@ export default function Archief() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function Archief() {
+  return (
+    <Suspense fallback={<div className="text-center py-20 text-xl font-bold text-primary">Informatie laden...</div>}>
+      <ArchiefContent />
+    </Suspense>
   )
 }
