@@ -44,27 +44,30 @@ export default function BijsluiterPage() {
   return (
     <div className="w-full pb-20 overflow-x-hidden">
       {/* Hero */}
-      <section className="relative w-full h-[600px] md:h-[750px] flex items-center bg-gray-900">
+      <section className="relative w-full h-[600px] md:h-[750px] flex items-start pt-28 md:pt-36 bg-gray-900">
         <Image
           src="/images/stukverdriet_hero3.png"
           alt="Bijsluiter achtergrond"
           fill
           priority
-          className="object-cover opacity-70"
+          className="object-cover opacity-60"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent" />
         <div className="container relative z-10 mx-auto px-6 max-w-7xl">
-          <div className="max-w-2xl mt-16 md:mt-24">
-            <p className="text-sm font-bold text-[#78A179] uppercase tracking-widest mb-4">
-              Community
-            </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-6 tracking-tight drop-shadow-lg">
+          <div className="max-w-xl">
+            <div className="flex items-center gap-3 mb-4 sm:mb-5">
+              <span className="block w-8 h-px bg-[#78A179]/80" />
+              <p className="text-[#78A179] text-[10px] font-bold uppercase tracking-[0.28em]">Community</p>
+            </div>
+            <h1 className="font-serif text-[30px] sm:text-[38px] md:text-[48px] lg:text-[56px] font-bold text-white leading-[1.12] tracking-tight drop-shadow-lg">
               De Bijsluiter
             </h1>
-            <p className="text-lg md:text-xl text-white/90 leading-relaxed font-medium drop-shadow-md">
-              De onverwachte, soms donkere of ronduit ongemakkelijke<br className="hidden md:block" />
-              bijwerkingen van verlies — gedeeld door mensen die het kennen.
-            </p>
+            <div className="mt-7 sm:mt-9 space-y-5">
+              <div className="w-14 h-[2px] bg-[#78A179] rounded-full" />
+              <p className="text-[14px] sm:text-[15px] md:text-[16px] text-white/65 leading-[1.8] font-light max-w-[360px]">
+                De onverwachte, soms donkere of ronduit ongemakkelijke bijwerkingen van verlies — gedeeld door mensen die het kennen.
+              </p>
+            </div>
           </div>
         </div>
       </section>

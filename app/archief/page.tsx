@@ -6,8 +6,8 @@ import { usePlayerStore } from '@/store/usePlayerStore'
 import Image from 'next/image'
 
 const mockEpisodes = [
-  { id: 1, title: 'Afl 1: Het begin', description: 'Intro', audio_url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', tags: ['Intro', 'Rouw'] },
-  { id: 2, title: 'Afl 2: Het ziekenhuis', description: 'De diagnose', audio_url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3', tags: ['Behandeling'] },
+  { id: 1, title: 'Afl 1: Het begin', description: 'De eerste aflevering over het begin van rouw en wat je kunt verwachten.', audio_url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', tags: ['Intro', 'Rouw'] },
+  { id: 2, title: 'Afl 2: Het ziekenhuis', description: 'Over de diagnose, de wachtkamers en de stilte daarna.', audio_url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3', tags: ['Behandeling'] },
 ]
 const allTags = ['Intro', 'Rouw', 'Behandeling', 'Verwerking']
 
@@ -17,7 +17,7 @@ function ArchiefContent() {
   const query = searchParams.get('q')?.toLowerCase() || ''
   const { playEpisode } = usePlayerStore()
 
-  const filteredEpisodes = mockEpisodes.filter(e => {
+  const filtered = mockEpisodes.filter(e => {
     const matchesTag = activeTag ? e.tags.includes(activeTag) : true
     const matchesQuery = query
       ? e.title.toLowerCase().includes(query) || e.description.toLowerCase().includes(query)
@@ -26,80 +26,88 @@ function ArchiefContent() {
   })
 
   return (
-    <div className="w-full pb-20 overflow-x-hidden">
+    <div className="w-full overflow-x-hidden">
+
       {/* Hero */}
-      <section className="relative w-full h-[600px] md:h-[750px] flex items-center bg-gray-900">
-        <Image
-          src="/images/stukverdriet_hero2.png"
-          alt="Archief achtergrond"
-          fill
-          priority
-          className="object-cover opacity-70"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+      <section className="relative w-full h-[600px] md:h-[750px] flex items-start pt-28 md:pt-36 bg-gray-900">
+        <Image src="/images/stukverdriet_hero2.png" alt="Archief" fill priority className="object-cover opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent" />
         <div className="container relative z-10 mx-auto px-6 max-w-7xl">
-          <div className="max-w-2xl mt-16 md:mt-24">
-            <p className="text-sm font-bold text-[#78A179] uppercase tracking-widest mb-4">
-              Afleveringen
-            </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-6 tracking-tight drop-shadow-lg">
+          <div className="max-w-xl">
+            <div className="flex items-center gap-3 mb-4 sm:mb-5">
+              <span className="block w-8 h-px bg-[#78A179]/80" />
+              <p className="text-[#78A179] text-[10px] font-bold uppercase tracking-[0.28em]">Afleveringen</p>
+            </div>
+            <h1 className="font-serif text-[30px] sm:text-[38px] md:text-[48px] lg:text-[56px] font-bold text-white leading-[1.12] tracking-tight drop-shadow-lg">
               Thema&apos;s &amp; Archief
             </h1>
-            <p className="text-lg md:text-xl text-white/90 leading-relaxed font-medium drop-shadow-md">
-              Alle afleveringen, geordend op gevoel en thema.<br className="hidden md:block" />
-              Zoek op wat bij jou past.
-            </p>
+            <div className="mt-7 sm:mt-9 space-y-5">
+              <div className="w-14 h-[2px] bg-[#78A179] rounded-full" />
+              <p className="text-[14px] sm:text-[15px] md:text-[16px] text-white/65 leading-[1.8] font-light max-w-[360px]">
+                Alle afleveringen, geordend op gevoel en thema. Zoek op wat bij jou past.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Content */}
-      <section className="container mx-auto px-6 max-w-5xl pt-16 space-y-10">
-        {/* Tag filtering */}
-        <div className="flex flex-wrap items-center gap-3">
+      <section className="container mx-auto px-6 max-w-5xl pt-16 pb-24 space-y-10">
+
+        {/* Tag filters */}
+        <div className="flex flex-wrap gap-2.5">
           <button
             onClick={() => setActiveTag(null)}
-            className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 border ${!activeTag ? 'bg-foreground text-background shadow-lg shadow-foreground/20 border-foreground scale-105' : 'bg-white/50 text-foreground/60 border-primary/20 hover:bg-white hover:border-primary/40 hover:text-foreground'}`}
+            className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 border ${!activeTag ? 'bg-foreground text-background border-foreground' : 'bg-white text-foreground/60 border-primary/15 hover:border-foreground/30 hover:text-foreground'}`}
           >
-            Alles Tonen
+            Alles
           </button>
           {allTags.map(tag => (
             <button
               key={tag}
               onClick={() => setActiveTag(tag)}
-              className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 border ${activeTag === tag ? 'bg-secondary text-white shadow-lg shadow-secondary/20 border-secondary scale-105' : 'bg-white/50 text-foreground/60 border-primary/20 hover:bg-white hover:border-primary/40 hover:text-foreground'}`}
+              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 border ${activeTag === tag ? 'bg-secondary text-white border-secondary' : 'bg-white text-foreground/60 border-primary/15 hover:border-secondary/30 hover:text-secondary'}`}
             >
               {tag}
             </button>
           ))}
         </div>
 
-        <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          {filteredEpisodes.map(ep => (
-            <div key={ep.id} className="group flex flex-col sm:flex-row justify-between sm:items-center gap-6 p-8 border border-primary/10 rounded-3xl bg-white/60 backdrop-blur-md shadow-sm hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300">
-              <div className="flex-1">
-                <div className="flex flex-wrap gap-2 mb-3">
+        {/* Episode list */}
+        <div className="flex flex-col gap-4">
+          {filtered.map((ep, index) => (
+            <article
+              key={ep.id}
+              className="group flex flex-col sm:flex-row justify-between sm:items-center gap-5 p-7 border border-primary/10 rounded-2xl bg-white hover:shadow-lg hover:shadow-foreground/5 hover:-translate-y-0.5 transition-all duration-300"
+            >
+              <div className="flex-1 min-w-0">
+                <div className="flex flex-wrap items-center gap-3 mb-3">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#78A179]">
+                    Afl. {String(index + 1).padStart(2, '0')}
+                  </span>
                   {ep.tags.map(t => (
-                    <span key={t} className="px-3 py-1 bg-secondary/10 text-secondary text-xs font-bold rounded-full uppercase tracking-widest">
+                    <span key={t} className="px-2.5 py-0.5 bg-secondary/10 text-secondary text-[10px] font-bold rounded-full uppercase tracking-wider">
                       {t}
                     </span>
                   ))}
                 </div>
-                <h3 className="font-extrabold text-2xl mb-2 text-foreground group-hover:text-secondary transition-colors line-clamp-2">{ep.title}</h3>
-                <p className="text-foreground/70 text-lg leading-relaxed max-w-3xl line-clamp-2">{ep.description}</p>
+                <h3 className="font-serif font-bold text-xl mb-1.5 text-foreground group-hover:text-secondary transition-colors line-clamp-1">
+                  {ep.title}
+                </h3>
+                <p className="text-sm text-foreground/55 leading-relaxed line-clamp-2">{ep.description}</p>
               </div>
               <button
-                onClick={() => playEpisode(ep.audio_url)}
-                className="relative inline-flex items-center justify-center gap-2 bg-secondary text-white px-8 py-4 rounded-full font-bold transition-all duration-300 hover:shadow-lg hover:shadow-secondary/30 hover:-translate-y-0.5 active:translate-y-0 min-w-[160px]"
+                onClick={() => playEpisode(ep.audio_url, ep.title)}
+                className="inline-flex items-center justify-center gap-2 bg-secondary text-white px-7 py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:bg-secondary/90 hover:shadow-lg hover:shadow-secondary/20 hover:-translate-y-0.5 active:translate-y-0 shrink-0"
               >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                 Speel af
               </button>
-            </div>
+            </article>
           ))}
-          {filteredEpisodes.length === 0 && (
-            <div className="py-20 text-center border-2 border-dashed border-primary/20 rounded-3xl bg-white/50">
-              <p className="text-lg text-primary font-medium">We konden geen afleveringen vinden met deze tag.</p>
+          {filtered.length === 0 && (
+            <div className="py-24 text-center border-2 border-dashed border-primary/15 rounded-2xl">
+              <p className="font-serif text-xl text-primary/60">Geen afleveringen gevonden.</p>
             </div>
           )}
         </div>
@@ -110,7 +118,7 @@ function ArchiefContent() {
 
 export default function Archief() {
   return (
-    <Suspense fallback={<div className="text-center py-20 text-xl font-bold text-primary">Informatie laden...</div>}>
+    <Suspense fallback={<div className="text-center py-20 text-primary/60 font-serif text-xl">Laden…</div>}>
       <ArchiefContent />
     </Suspense>
   )
