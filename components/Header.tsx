@@ -13,7 +13,7 @@ export default function Header() {
         <Link href="/" className="font-bold text-2xl text-white flex flex-col leading-none tracking-tight">
           <span className="text-sm font-normal">stuk</span>
           <span>verdriet</span>
-          <span className="text-[10px] uppercase font-semibold text-secondary mt-1">alles over rouw</span>
+          <span className="text-[10px] uppercase font-semibold text-secondary mt-1">De Podcast</span>
         </Link>
         <nav className="hidden md:flex items-center gap-8 font-semibold text-sm text-white">
           <Link href="/" className={`hover:text-secondary transition-colors ${isHome ? 'border-b-2 border-secondary pb-1' : ''}`}>
