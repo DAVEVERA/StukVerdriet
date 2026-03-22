@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabaseClient';
+import { sql } from '@vercel/postgres';
 import Parser from 'rss-parser';
 
 export const maxDuration = 60; // Increase timeout for Vercel
@@ -10,12 +10,12 @@ export async function POST(request: Request) {
     const parser = new Parser();
     const feedUrl = "https://jouw-podcast-host.com/rss"; // TODO: Make this an env var
     
-    // In test cases or if URL is a placeholder it might throw
     let feed;
     try {
       feed = await parser.parseURL(feedUrl);
-    } catch (e: any) {
-      return NextResponse.json({ message: "Kon RSS feed niet ophalen (foute URL?)", details: e.message }, { status: 500 });
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : 'Unknown fetch error';
+      return NextResponse.json({ message: "Kon RSS feed niet ophalen", details: msg }, { status: 500 });
     }
 
     let added = 0;
@@ -25,22 +25,20 @@ export async function POST(request: Request) {
       if (!audioUrl) continue;
 
       const pubDate = item.pubDate ? new Date(item.pubDate).toISOString() : new Date().toISOString();
+      const title = item.title || 'Zonder titel';
+      const description = item.contentSnippet || item.content || '';
 
       // Check if episode already exists by audio_url
-      const { data: existing } = await supabase
-        .from('episodes')
-        .select('id')
-        .eq('audio_url', audioUrl)
-        .single();
+      const { rows } = await sql`
+        SELECT id FROM episodes WHERE audio_url = ${audioUrl} LIMIT 1
+      `;
 
-      if (!existing) {
+      if (rows.length === 0) {
         // Insert new episode
-        await supabase.from('episodes').insert([{
-          title: item.title || 'Zonder titel',
-          description: item.contentSnippet || item.content || '',
-          audio_url: audioUrl,
-          published_at: pubDate
-        }]);
+        await sql`
+          INSERT INTO episodes (title, description, audio_url, published_at)
+          VALUES (${title}, ${description}, ${audioUrl}, ${pubDate})
+        `;
         added++;
       }
     }
@@ -57,7 +55,8 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ status: "success", added_episodes: added }, { status: 200 });
 
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

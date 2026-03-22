@@ -1,14 +1,16 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabaseClient';
+import { sql } from '@vercel/postgres';
 
 export async function GET() {
-  const { data, error } = await supabase
-    .from('bijsluiter_items')
-    .select('*')
-    .eq('is_approved', false)
-    .order('created_at', { ascending: false });
-    
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-
-  return NextResponse.json(data);
+  try {
+    const { rows } = await sql`
+      SELECT * FROM bijsluiter_items 
+      WHERE is_approved = false 
+      ORDER BY created_at DESC
+    `;
+    return NextResponse.json(rows);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Unknown postgres error';
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 }

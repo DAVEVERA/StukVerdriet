@@ -10,19 +10,14 @@ interface Episode {
   published_at: string;
 }
 
-import { supabase } from '@/lib/supabaseClient'
+import { sql } from '@vercel/postgres'
 
 async function getEpisodes(): Promise<Episode[]> {
   try {
-    const { data: episodes, error } = await supabase
-      .from('episodes')
-      .select('*')
-      .order('published_at', { ascending: false });
-
-    if (error) {
-      console.warn("Supabase query mislukt:", error);
-      return [];
-    }
+    const { rows: episodes } = await sql<Episode>`
+      SELECT * FROM episodes 
+      ORDER BY published_at DESC
+    `;
     return episodes || [];
   } catch (error) {
     console.warn("Fout bij ophalen episodes:", error)

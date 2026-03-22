@@ -1,17 +1,19 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabaseClient';
+import { sql } from '@vercel/postgres';
 
 export async function GET() {
-  const { data, error } = await supabase
-    .from('bijsluiter_items')
-    .select('*')
-    .eq('is_approved', true)
-    .order('created_at', { ascending: false })
-    .limit(50);
-    
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-
-  return NextResponse.json(data);
+  try {
+    const { rows } = await sql`
+      SELECT * FROM bijsluiter_items 
+      WHERE is_approved = true 
+      ORDER BY created_at DESC 
+      LIMIT 50
+    `;
+    return NextResponse.json(rows);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Unknown postgres error';
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 }
 
 export async function POST(request: Request) {
@@ -23,15 +25,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid text length" }, { status: 400 });
     }
 
-    const { data, error } = await supabase
-      .from('bijsluiter_items')
-      .insert([{ text, is_approved: false }])
-      .select()
-      .single();
-
-    if (error) throw error;
+    const { rows } = await sql`
+      INSERT INTO bijsluiter_items (text, is_approved)
+      VALUES (${text}, false)
+      RETURNING *
+    `;
     
-    return NextResponse.json(data, { status: 201 });
+    return NextResponse.json(rows[0], { status: 201 });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json({ error: message }, { status: 500 });

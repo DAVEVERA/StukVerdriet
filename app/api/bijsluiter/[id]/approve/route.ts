@@ -1,19 +1,27 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabaseClient';
+import { sql } from '@vercel/postgres';
 
 export async function PUT(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  const id = (await params).id;
+  const idStr = (await params).id;
+  const id = parseInt(idStr, 10);
   
-  if (!id) return NextResponse.json({ error: "ID missing" }, { status: 400 });
+  if (isNaN(id)) return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
 
-  const { data, error } = await supabase
-    .from('bijsluiter_items')
-    .update({ is_approved: true })
-    .eq('id', parseInt(id))
-    .select()
-    .single();
+  try {
+    const { rows } = await sql`
+      UPDATE bijsluiter_items 
+      SET is_approved = true 
+      WHERE id = ${id} 
+      RETURNING *
+    `;
     
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+    if (rows.length === 0) {
+      return NextResponse.json({ error: "Item not found" }, { status: 404 });
+    }
 
-  return NextResponse.json(data);
+    return NextResponse.json(rows[0]);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Unknown postgres error';
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 }
