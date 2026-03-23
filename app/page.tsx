@@ -49,7 +49,7 @@ export default async function HomePage() {
     <div className="w-full overflow-x-hidden">
 
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="relative w-full h-[600px] md:h-[750px] flex items-start pt-28 md:pt-36 bg-gray-900">
+      <section className="relative w-full h-[600px] md:h-[750px] flex items-start pt-20 md:pt-24 bg-gray-900">
         <Image
           src="/images/stukverdriet_hero.png"
           alt="Stukverdriet"
@@ -60,21 +60,38 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent" />
 
         <div className="container relative z-10 mx-auto px-6 max-w-7xl">
+
+          {/* Hero logo group */}
+          <div className="flex items-center mb-6 md:mb-8">
+            <Image
+              src="/logo_stukverdriet.png"
+              alt="Stuk Verdriet"
+              width={220}
+              height={279}
+              className="object-contain shrink-0 w-[100px] sm:w-[145px] md:w-[195px] h-auto"
+            />
+            <div className="flex flex-col justify-center -ml-4 sm:-ml-6 md:-ml-9">
+              <span className="text-[16px] sm:text-[21px] md:text-[27px] font-light text-white/55 uppercase tracking-[0.22em] leading-none">stuk</span>
+              <span className="text-[38px] sm:text-[52px] md:text-[66px] font-extrabold text-white tracking-tight leading-[0.92]">verdriet</span>
+              <span className="text-[9px] sm:text-[11px] md:text-[13px] font-bold uppercase tracking-[0.32em] text-[#78A179] leading-none mt-1.5 md:mt-2">De Podcast</span>
+            </div>
+          </div>
+
+          {/* Separator */}
+          <div className="w-56 sm:w-72 h-px bg-white/20 mb-5 md:mb-6" />
+
+          {/* Tagline */}
           <div className="max-w-xl">
-            <div className="flex items-center gap-3 mb-4 sm:mb-5">
+            <div className="flex items-center gap-3 mb-3 sm:mb-4">
               <span className="block w-8 h-px bg-[#78A179]/80" />
               <p className="text-[#78A179] text-[10px] font-bold uppercase tracking-[0.28em]">Een podcast over rouw</p>
             </div>
-            <h1 className="font-serif text-[30px] sm:text-[38px] md:text-[48px] lg:text-[56px] font-bold text-white leading-[1.12] tracking-tight drop-shadow-lg">
-              Een kind, een partner,<br />een ouder — iemand die<br />er gewoon had moeten zijn.
-            </h1>
-            <div className="mt-7 sm:mt-9 space-y-5">
-              <div className="w-14 h-[2px] bg-[#78A179] rounded-full" />
-              <p className="text-[14px] sm:text-[15px] md:text-[16px] text-white/65 leading-[1.8] font-light max-w-[360px]">
-                Stukverdriet gaat over hoe rouw voelt, hoe het je leven ontwricht,
-                en waarom iedereen anders rouwt maar daarin toch hetzelfde zoekt.
-              </p>
-            </div>
+            <p className="font-serif text-[18px] sm:text-[21px] md:text-[24px] text-white/90 leading-[1.5] font-normal italic max-w-md">
+              Een kind, een partner, een ouder —<br className="hidden sm:block" /> iemand die er gewoon had moeten zijn.
+            </p>
+            <p className="mt-3 sm:mt-4 text-[13px] sm:text-[14px] md:text-[15px] text-white/60 leading-[1.8] font-light max-w-[340px]">
+              Over hoe rouw voelt, hoe het je leven ontwricht, en waarom iedereen anders rouwt maar daarin toch hetzelfde zoekt.
+            </p>
           </div>
         </div>
 

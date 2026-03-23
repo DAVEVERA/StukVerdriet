@@ -29,21 +29,25 @@ export default function Header() {
       <header className="absolute top-0 left-0 w-full z-50 py-6">
         <div className="container mx-auto px-6 max-w-7xl flex justify-between items-center">
 
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-0">
-            <Image
-              src="/logo_stukverdriet.png"
-              alt="Stuk Verdriet logo"
-              width={160}
-              height={203}
-              className="object-contain shrink-0"
-            />
-            <div className="flex flex-col justify-center -ml-5">
-              <span className="text-[13px] font-light text-white/70 uppercase tracking-[0.2em] leading-none">stuk</span>
-              <span className="text-xl font-extrabold text-white tracking-tight leading-tight">verdriet</span>
-              <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#78A179] leading-none mt-1">De Podcast</span>
-            </div>
-          </Link>
+          {/* Logo — hidden on home page (logo is shown in the hero there) */}
+          {pathname !== '/' ? (
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/logo_stukverdriet.png"
+                alt="Stuk Verdriet logo"
+                width={210}
+                height={266}
+                className="object-contain shrink-0 w-[130px] md:w-[195px] h-auto"
+              />
+              <div className="flex flex-col justify-center -ml-5 md:-ml-8">
+                <span className="text-[11px] md:text-[14px] font-light text-white/60 uppercase tracking-[0.22em] leading-none">stuk</span>
+                <span className="text-[22px] md:text-[28px] font-extrabold text-white tracking-tight leading-[1.05]">verdriet</span>
+                <span className="text-[9px] md:text-[11px] font-bold uppercase tracking-[0.28em] text-[#78A179] leading-none mt-1">De Podcast</span>
+              </div>
+            </Link>
+          ) : (
+            <div />
+          )}
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8 font-semibold text-sm text-white">
@@ -94,17 +98,18 @@ export default function Header() {
       >
         {/* Sidebar header */}
         <div className="flex items-center justify-between px-6 pt-6 pb-8 border-b border-white/10">
-          <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
+          <Link href="/" className="flex items-center" onClick={() => setOpen(false)}>
             <Image
               src="/logo_stukverdriet.png"
               alt="Stuk Verdriet logo"
-              width={36}
-              height={46}
-              className="object-contain brightness-0 invert opacity-80"
+              width={52}
+              height={66}
+              className="object-contain brightness-0 invert opacity-80 shrink-0"
             />
-            <div className="flex flex-col leading-none">
+            <div className="flex flex-col leading-none -ml-2">
               <span className="text-[9px] font-light text-white/50 uppercase tracking-widest">stuk</span>
-              <span className="text-sm font-extrabold text-white tracking-tight">verdriet</span>
+              <span className="text-[15px] font-extrabold text-white tracking-tight leading-tight">verdriet</span>
+              <span className="text-[8px] font-bold uppercase tracking-[0.25em] text-[#78A179] mt-0.5">De Podcast</span>
             </div>
           </Link>
           <button

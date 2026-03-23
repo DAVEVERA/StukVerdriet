@@ -5,7 +5,7 @@
   --color-foreground: #2F4F4F;
   --color-primary: #708090;
   --color-secondary: #556B2F;
-  --font-sans: var(--font-inter), sans-serif;
+  --font-sans: var(--font-poppins), sans-serif;
   --font-serif: var(--font-lora), Georgia, 'Times New Roman', serif;
 }
 

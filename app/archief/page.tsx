@@ -38,12 +38,12 @@ function ArchiefContent() {
               <span className="block w-8 h-px bg-[#78A179]/80" />
               <p className="text-[#78A179] text-[10px] font-bold uppercase tracking-[0.28em]">Afleveringen</p>
             </div>
-            <h1 className="font-serif text-[30px] sm:text-[38px] md:text-[48px] lg:text-[56px] font-bold text-white leading-[1.12] tracking-tight drop-shadow-lg">
+            <h1 className="text-[30px] sm:text-[38px] md:text-[48px] lg:text-[56px] font-extrabold text-white leading-[1.1] tracking-tight drop-shadow-lg">
               Thema&apos;s &amp; Archief
             </h1>
             <div className="mt-7 sm:mt-9 space-y-5">
               <div className="w-14 h-[2px] bg-[#78A179] rounded-full" />
-              <p className="text-[14px] sm:text-[15px] md:text-[16px] text-white/65 leading-[1.8] font-light max-w-[360px]">
+              <p className="text-[18px] sm:text-[20px] md:text-[22px] text-white/65 leading-[1.7] font-light max-w-[480px]">
                 Alle afleveringen, geordend op gevoel en thema. Zoek op wat bij jou past.
               </p>
             </div>
