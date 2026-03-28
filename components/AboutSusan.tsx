@@ -28,12 +28,6 @@ export default function AboutSusan() {
           <p className="text-lg font-medium text-foreground">
             Susan Mathijssen verloor op 30 november 2024 haar 26-jarige dochter Eva Hermans-Kroot, die bekend werd door het programma Over Mijn Lijk en haar Instagramaccount Longeneeslijk. &ldquo;Er zijn overal handboeken voor, maar niet voor als je kind doodgaat,&rdquo; vertelt ze. Hoe ging zij om met dit grote verdriet en het gemis? Susan is ook moeder van dochter Anne (29) en zoon Gijs (25).
           </p>
-          <p>
-            &ldquo;Eva maakte zich zorgen. Hoe het verder moest met mij als zij er niet meer zou zijn. Ze had gezien hoe ik in 2018 na het plotselinge overlijden van Mart, de vriend van mijn dochter Anne, mezelf compleet voorbijliep in zorgen en rouwen. Dat wilde Eva voorkomen. Ze wilde me in bescherming nemen. Eva heeft me daarom ook een tijdje niet altijd alles verteld. Ze wilde niet dat ik me druk zou maken. En ik sprak mijn angsten en mijn verdriet ook niet altijd uit naar haar, want daar wilde ik haar weer niet mee belasten.&rdquo;
-          </p>
-          <p>
-            &ldquo;Het was een lastige weg om te zoeken naar de balans. Daar hebben we het samen veel over gehad. Ze wilde dat ik goed voor mezelf zou zorgen. Maar hoe zorg je goed voor jezelf als je verdriet zo groot is? Om haar gerust te stellen ben ik al een half jaar voor haar overlijden naar een psycholoog gegaan. Zelf was ik ook wel bang om na Eva&rsquo;s dood weer terug te vallen. Als je kind doodgaat, word je echt bijna letterlijk gek. Je hebt hulp nodig, niet alleen voor jezelf, maar ook om te leren hoe je er het beste kunt zijn voor je kind. En ik had de behoefte om van iemand te horen of dat wat ik voelde normaal was. Op een gegeven moment zat ik het liefst de hele dag naast Eva op de bank. Wilde ik alleen nog maar dicht bij haar zijn.&rdquo;
-          </p>
 
           <div
             className={`grid transition-all duration-500 ease-in-out ${
@@ -41,6 +35,13 @@ export default function AboutSusan() {
             }`}
           >
             <div className="overflow-hidden flex flex-col gap-5">
+              <p>
+                &ldquo;Eva maakte zich zorgen. Hoe het verder moest met mij als zij er niet meer zou zijn. Ze had gezien hoe ik in 2018 na het plotselinge overlijden van Mart, de vriend van mijn dochter Anne, mezelf compleet voorbijliep in zorgen en rouwen. Dat wilde Eva voorkomen. Ze wilde me in bescherming nemen. Eva heeft me daarom ook een tijdje niet altijd alles verteld. Ze wilde niet dat ik me druk zou maken. En ik sprak mijn angsten en mijn verdriet ook niet altijd uit naar haar, want daar wilde ik haar weer niet mee belasten.&rdquo;
+              </p>
+              <p>
+                &ldquo;Het was een lastige weg om te zoeken naar de balans. Daar hebben we het samen veel over gehad. Ze wilde dat ik goed voor mezelf zou zorgen. Maar hoe zorg je goed voor jezelf als je verdriet zo groot is? Om haar gerust te stellen ben ik al een half jaar voor haar overlijden naar een psycholoog gegaan. Zelf was ik ook wel bang om na Eva&rsquo;s dood weer terug te vallen. Als je kind doodgaat, word je echt bijna letterlijk gek. Je hebt hulp nodig, niet alleen voor jezelf, maar ook om te leren hoe je er het beste kunt zijn voor je kind. En ik had de behoefte om van iemand te horen of dat wat ik voelde normaal was. Op een gegeven moment zat ik het liefst de hele dag naast Eva op de bank. Wilde ik alleen nog maar dicht bij haar zijn.&rdquo;
+              </p>
+
               <h3 className="text-xl font-bold font-serif text-[#78A179] mt-2">Herinneringen maken</h3>
               <p>
                 &ldquo;Eva was al het huis uit toen ze ziek werd. Ze had haar leven met Matthijs en dan kom je als moeder toch op het tweede plan. Het is een dubbel gevoel. Dat is loslaten, wat ook moet, maar het is niet altijd makkelijk. Zeker niet als je kind zo ziek is. We konden gelukkig over alles praten. Eva zei vaak: &lsquo;Als je mee wilt naar het ziekenhuis, mam, dan kan dat altijd, h&egrave;!&rsquo; Dus ben ik ook vaak mee geweest als ze weer een chemo kreeg of een belangrijke gesprek had. Dat vond ik fijn. Ik was geregeld bij haar thuis, om een lunch te maken, voor haar te zorgen en om Matthijs te ontlasten. Ik wilde dat Matthijs ook dingen voor zichzelf kon doen. Ik ben dankbaar dat Eva hem had. In maart kreeg ze de diagnose ongeneeslijke longkanker en in mei heeft hij haar ten huwelijk gevraagd. Hoe bijzonder is dat? Zijn liefde heeft haar echt geholpen die vier jaar door te komen. Hun huwelijk was een groot feest om de liefde en het leven te vieren.&rdquo;
