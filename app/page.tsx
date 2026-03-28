@@ -1,4 +1,5 @@
 import PlayButton from '@/components/PlayButton'
+import AboutSusan from '@/components/AboutSusan'
 import Image from 'next/image'
 import type { InstagramPost } from '@/app/api/instagram/route'
 import { sql } from '@vercel/postgres'
@@ -75,11 +76,11 @@ export default async function HomePage() {
           <div className="w-56 sm:w-72 h-px bg-white/20 mb-5 md:mb-6" />
 
           {/* Tagline */}
-          <div className="max-w-xl">
-            <p className="font-serif text-[18px] sm:text-[21px] md:text-[24px] text-white/90 leading-[1.5] font-normal italic max-w-md">
+          <div className="max-w-xl drop-shadow-lg">
+            <p className="font-serif text-[18px] sm:text-[21px] md:text-[24px] text-white leading-[1.5] font-semibold max-w-md">
               Palliatieve zorg: Hulp van rouw bij leven. Tussen leven, loslaten en dat wat overblijft
             </p>
-            <p className="mt-3 sm:mt-4 text-[13px] sm:text-[14px] md:text-[15px] text-white/60 leading-[1.8] font-light max-w-[340px]">
+            <p className="mt-3 sm:mt-4 text-[13px] sm:text-[14px] md:text-[15px] text-white/90 leading-[1.8] font-medium max-w-[340px]">
               Palliatieve zorg is gericht op kwaliteit van leven, verwerking en emotionele steun. Begeleiding is niet alleen voor de zorgbehoevende maar ook voor naasten.
             </p>
           </div>
@@ -167,6 +168,9 @@ export default async function HomePage() {
           )}
         </div>
       </section>
+
+      {/* ── Over Susan (New Section) ─────────────────────────── */}
+      <AboutSusan />
 
       {/* ── Instagram ────────────────────────────────────────── */}
       <section className="container mx-auto px-6 max-w-7xl pb-24 space-y-8">

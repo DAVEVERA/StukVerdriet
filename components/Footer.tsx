@@ -20,6 +20,7 @@ const socials = [
       </svg>
     ),
   },
+  
 ]
 
 const navLinks = [
