@@ -61,17 +61,9 @@ export default function Footer() {
                 alt="Stuk Verdriet logo"
                 width={48}
                 height={61}
-                className="object-contain brightness-0 invert opacity-80"
+                className="object-contain brightness-0 invert opacity-80 mix-blend-screen"
               />
-              <div className="flex flex-col leading-none">
-                <span className="text-[10px] font-light text-white/50 uppercase tracking-widest">stuk</span>
-                <span className="text-base font-extrabold text-white tracking-tight">verdriet</span>
-                <span className="text-[8px] font-bold uppercase tracking-widest text-[#78A179] mt-0.5">De Podcast</span>
-              </div>
             </Link>
-            <p className="text-sm leading-relaxed text-white/50 max-w-xs">
-              Een podcast over rouw, verlies en verwerking. Eerlijk, nuchter en menselijk.
-            </p>
           </div>
 
           {/* Navigation */}

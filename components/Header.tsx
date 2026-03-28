@@ -36,13 +36,8 @@ export default function Header() {
                 alt="Stuk Verdriet logo"
                 width={210}
                 height={266}
-                className="object-contain shrink-0 w-[130px] md:w-[195px] h-auto"
+                className="object-contain shrink-0 w-[130px] md:w-[195px] h-auto mix-blend-screen"
               />
-              <div className="flex flex-col justify-center -ml-5 md:-ml-8">
-                <span className="text-[11px] md:text-[14px] font-light text-white/60 uppercase tracking-[0.22em] leading-none">stuk</span>
-                <span className="text-[22px] md:text-[28px] font-extrabold text-white tracking-tight leading-[1.05]">verdriet</span>
-                <span className="text-[9px] md:text-[11px] font-bold uppercase tracking-[0.28em] text-[#78A179] leading-none mt-1">De Podcast</span>
-              </div>
             </Link>
           ) : (
             <div />
@@ -103,13 +98,8 @@ export default function Header() {
               alt="Stuk Verdriet logo"
               width={52}
               height={66}
-              className="object-contain brightness-0 invert opacity-80 shrink-0"
+              className="object-contain brightness-0 invert opacity-80 shrink-0 mix-blend-screen"
             />
-            <div className="flex flex-col leading-none -ml-2">
-              <span className="text-[9px] font-light text-white/50 uppercase tracking-widest">stuk</span>
-              <span className="text-[15px] font-extrabold text-white tracking-tight leading-tight">verdriet</span>
-              <span className="text-[8px] font-bold uppercase tracking-[0.25em] text-[#78A179] mt-0.5">De Podcast</span>
-            </div>
           </Link>
           <button
             onClick={() => setOpen(false)}
@@ -150,11 +140,7 @@ export default function Header() {
         </nav>
 
         {/* Sidebar footer */}
-        <div className="px-6 pb-8 pt-4 border-t border-white/10">
-          <p className="text-xs text-white/30 leading-relaxed">
-            Een podcast over rouw, verlies en verwerking.
-          </p>
-        </div>
+        <div className="px-6 pb-8 pt-4 border-t border-white/10" />
       </aside>
     </>
   )

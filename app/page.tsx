@@ -67,13 +67,8 @@ export default async function HomePage() {
               alt="Stuk Verdriet"
               width={220}
               height={279}
-              className="object-contain shrink-0 w-[100px] sm:w-[145px] md:w-[195px] h-auto"
+              className="object-contain shrink-0 w-[100px] sm:w-[145px] md:w-[195px] h-auto mix-blend-screen"
             />
-            <div className="flex flex-col justify-center -ml-4 sm:-ml-6 md:-ml-9">
-              <span className="text-[16px] sm:text-[21px] md:text-[27px] font-light text-white/55 uppercase tracking-[0.22em] leading-none">stuk</span>
-              <span className="text-[38px] sm:text-[52px] md:text-[66px] font-extrabold text-white tracking-tight leading-[0.92]">verdriet</span>
-              <span className="text-[9px] sm:text-[11px] md:text-[13px] font-bold uppercase tracking-[0.32em] text-[#78A179] leading-none mt-1.5 md:mt-2">De Podcast</span>
-            </div>
           </div>
 
           {/* Separator */}
@@ -81,15 +76,11 @@ export default async function HomePage() {
 
           {/* Tagline */}
           <div className="max-w-xl">
-            <div className="flex items-center gap-3 mb-3 sm:mb-4">
-              <span className="block w-8 h-px bg-[#78A179]/80" />
-              <p className="text-[#78A179] text-[10px] font-bold uppercase tracking-[0.28em]">Een podcast over rouw</p>
-            </div>
             <p className="font-serif text-[18px] sm:text-[21px] md:text-[24px] text-white/90 leading-[1.5] font-normal italic max-w-md">
-              Een kind, een partner, een ouder —<br className="hidden sm:block" /> iemand die er gewoon had moeten zijn.
+              Palliatieve zorg: Hulp van rouw bij leven. Tussen leven, loslaten en dat wat overblijft
             </p>
             <p className="mt-3 sm:mt-4 text-[13px] sm:text-[14px] md:text-[15px] text-white/60 leading-[1.8] font-light max-w-[340px]">
-              Over hoe rouw voelt, hoe het je leven ontwricht, en waarom iedereen anders rouwt maar daarin toch hetzelfde zoekt.
+              Palliatieve zorg is gericht op kwaliteit van leven, verwerking en emotionele steun. Begeleiding is niet alleen voor de zorgbehoevende maar ook voor naasten.
             </p>
           </div>
         </div>
