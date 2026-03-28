@@ -69,9 +69,9 @@ export default function Header() {
             className="md:hidden flex flex-col justify-center items-center gap-[5px] w-10 h-10 rounded-lg bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
             aria-label="Menu openen"
           >
-            <span className="w-5 h-[2px] bg-white rounded-full" />
-            <span className="w-5 h-[2px] bg-white rounded-full" />
-            <span className="w-3.5 h-[2px] bg-white rounded-full self-start ml-[5px]" />
+            <span className="w-5 h-[2px] bg-white rounded-full transition-all" />
+            <span className="w-5 h-[2px] bg-white rounded-full transition-all" />
+            <span className="w-5 h-[2px] bg-white rounded-full transition-all" />
           </button>
 
         </div>
