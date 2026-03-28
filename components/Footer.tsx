@@ -57,7 +57,7 @@ export default function Footer() {
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
               <Image
-                src="/logo_stukverdriet.png"
+                src="/SV_Logo.jpeg"
                 alt="Stuk Verdriet logo"
                 width={48}
                 height={61}

@@ -63,7 +63,7 @@ export default async function HomePage() {
           {/* Hero logo group */}
           <div className="flex items-center mb-6 md:mb-8">
             <Image
-              src="/logo_stukverdriet.png"
+              src="/SV_Logo.jpeg"
               alt="Stuk Verdriet"
               width={220}
               height={279}

@@ -8,7 +8,6 @@ import { useState, useEffect } from 'react'
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/archief', label: "Thema's" },
-  { href: '/gids', label: 'Lotgenoten' },
 ]
 
 export default function Header() {
@@ -33,7 +32,7 @@ export default function Header() {
           {pathname !== '/' ? (
             <Link href="/" className="flex items-center">
               <Image
-                src="/logo_stukverdriet.png"
+                src="/SV_Logo.jpeg"
                 alt="Stuk Verdriet logo"
                 width={210}
                 height={266}
@@ -100,7 +99,7 @@ export default function Header() {
         <div className="flex items-center justify-between px-6 pt-6 pb-8 border-b border-white/10">
           <Link href="/" className="flex items-center" onClick={() => setOpen(false)}>
             <Image
-              src="/logo_stukverdriet.png"
+              src="/SV_Logo.jpeg"
               alt="Stuk Verdriet logo"
               width={52}
               height={66}
