@@ -1,6 +1,5 @@
 import PlayButton from '@/components/PlayButton'
 import Image from 'next/image'
-import SearchBar from '@/components/SearchBar'
 import type { InstagramPost } from '@/app/api/instagram/route'
 import { sql } from '@vercel/postgres'
 
@@ -95,26 +94,12 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Floating search card */}
-        <div className="absolute -bottom-10 left-0 right-0 z-20 flex justify-center px-6">
-          <div className="bg-white w-full max-w-2xl px-8 py-7 md:px-10 md:py-8 shadow-2xl shadow-black/10 border border-primary/8 rounded-2xl flex flex-col items-center gap-5">
-            <div className="text-center">
-              <h2 className="font-serif text-xl md:text-2xl font-bold text-foreground">Waar wil je meer over weten?</h2>
-              <p className="text-sm text-primary/60 mt-1">Zoek op thema, gevoel of onderwerp</p>
-            </div>
-            <SearchBar />
-          </div>
-        </div>
       </section>
 
       {/* ── Episodes ─────────────────────────────────────────── */}
-      <section className="container mx-auto px-6 max-w-7xl pt-36 pb-24 space-y-10">
-        <div className="flex items-end justify-between border-b border-primary/10 pb-5">
-          <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#78A179] mb-1">Luisteren</p>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground">Uitgelichte Afleveringen</h2>
-          </div>
-          <span className="text-sm font-medium text-primary/50 pb-1">{episodes.length} beschikbaar</span>
+      <section className="container mx-auto px-6 max-w-7xl pt-16 pb-24 space-y-10">
+        <div className="border-b border-primary/10 pb-5">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground">Luister de podcast</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -146,8 +131,47 @@ export default async function HomePage() {
             </article>
           ))}
           {episodes.length === 0 && (
-            <div className="col-span-full py-24 text-center border-2 border-dashed border-primary/15 rounded-2xl">
+            <div className="col-span-full py-16 flex flex-col items-center gap-8 border-2 border-dashed border-primary/15 rounded-2xl">
               <p className="font-serif text-xl text-primary/60">Nog geen afleveringen online.</p>
+
+              {/* Inline media player — always visible */}
+              <div className="w-full max-w-lg bg-[#78A179] rounded-2xl overflow-hidden shadow-lg">
+                {/* Progress bar */}
+                <div className="w-full h-1 bg-white/20">
+                  <div className="h-full bg-white/50 w-0" />
+                </div>
+                <div className="px-6 py-4 flex items-center gap-4">
+                  {/* Music note icon */}
+                  <div className="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center shrink-0">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" />
+                    </svg>
+                  </div>
+                  {/* Title */}
+                  <div className="flex-1 min-w-0 text-left">
+                    <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-white/70 leading-none mb-1">Binnenkort</p>
+                    <p className="text-sm font-medium text-white truncate leading-none">Eerste aflevering volgt snel</p>
+                  </div>
+                  {/* Rewind */}
+                  <button disabled className="w-8 h-8 rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors shrink-0">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z" />
+                    </svg>
+                  </button>
+                  {/* Play button */}
+                  <button disabled className="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0">
+                    <svg className="w-4 h-4 text-[#78A179] ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </button>
+                  {/* Forward */}
+                  <button disabled className="w-8 h-8 rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors shrink-0">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M13 6v12l8.5-6L13 6zM4 18l8.5-6L4 6v12z" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
           )}
         </div>
