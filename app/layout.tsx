@@ -1,12 +1,12 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Poppins, Lora } from 'next/font/google'
+import { Rethink_Sans, Jost } from 'next/font/google'
 import AudioPlayer from '@/components/AudioPlayer'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
-const poppins = Poppins({ subsets: ['latin'], variable: '--font-poppins', weight: ['300', '400', '500', '600', '700', '800'], display: 'swap' })
-const lora = Lora({ subsets: ['latin'], variable: '--font-lora', style: ['normal', 'italic'], display: 'swap' })
+const rethinkSans = Rethink_Sans({ subsets: ['latin'], variable: '--font-rethink-sans', weight: ['400', '500', '600', '700', '800'], display: 'swap' })
+const jost = Jost({ subsets: ['latin'], variable: '--font-jost', weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'], style: ['normal', 'italic'], display: 'swap' })
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://stukverdriet.nl'
 
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="nl" className={`${poppins.variable} ${lora.variable}`}>
+    <html lang="nl" className={`${rethinkSans.variable} ${jost.variable}`}>
       <body className="bg-background text-foreground min-h-screen flex flex-col font-sans antialiased">
         <div className="fixed top-0 right-0 -z-10 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none opacity-40" />
         <div className="fixed bottom-0 left-0 -z-10 w-[400px] h-[400px] bg-secondary/8 blur-[100px] rounded-full pointer-events-none opacity-30" />

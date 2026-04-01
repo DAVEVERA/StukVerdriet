@@ -1,8 +1,10 @@
 import PlayButton from '@/components/PlayButton'
 import AboutSusan from '@/components/AboutSusan'
 import Image from 'next/image'
-import type { InstagramPost } from '@/app/api/instagram/route'
+
 import { sql } from '@vercel/postgres'
+import InstagramGrid from '@/components/InstagramGrid'
+import PalliatieveZorgExplainer from '@/components/PalliatieveZorgExplainer'
 
 interface Episode {
   id: number
@@ -12,26 +14,7 @@ interface Episode {
   published_at: string
 }
 
-const placeholderPosts = [
-  { img: '/images/stukverdriet_hero.png',   quote: 'Rouwen leer je pas echt\nals je ermee te maken krijgt.' },
-  { img: '/images/stukverdriet_hero2.png',  quote: 'Er is geen goed of fout in rouw.\nAlleen jouw weg.' },
-  { img: '/images/stukverdriet_hero3.png',  quote: 'Soms is er niets te zeggen.\nGewoon er zijn is genoeg.' },
-  { img: '/images/stukbverdriet_hero4.png', quote: 'Het gemis wordt niet kleiner.\nJij wordt groter.' },
-  { img: '/images/stukbverdriet_hero5.png', quote: 'Verdriet is de prijs van liefde.\nEn het was de moeite waard.' },
-  { img: '/images/stukverdriet_hero_6.png', quote: 'Je hoeft niet te vergeten\nom verder te leven.' },
-]
 
-async function getInstagramPosts(): Promise<InstagramPost[]> {
-  try {
-    const base = process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'
-    const res = await fetch(`${base}/api/instagram`, { next: { revalidate: 3600 } })
-    if (!res.ok) return []
-    const data = await res.json()
-    return data.posts ?? []
-  } catch {
-    return []
-  }
-}
 
 async function getEpisodes(): Promise<Episode[]> {
   try {
@@ -43,50 +26,36 @@ async function getEpisodes(): Promise<Episode[]> {
 }
 
 export default async function HomePage() {
-  const [episodes, instagramPosts] = await Promise.all([getEpisodes(), getInstagramPosts()])
+  const episodes = await getEpisodes()
 
   return (
     <div className="w-full overflow-x-hidden">
 
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="relative w-full h-[600px] md:h-[750px] flex items-start pt-20 md:pt-24 bg-gray-900">
+      <section className="relative w-full h-[600px] md:h-[750px] flex items-center bg-gray-900 border-b border-white/10">
         <Image
-          src="/images/stukverdriet_hero.png"
+          src="/images/herostartbutterfly.png"
           alt="Stukverdriet"
           fill
           priority
-          className="object-cover opacity-60"
+          className="object-cover opacity-80 md:opacity-100"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent" />
 
-        <div className="container relative z-10 mx-auto px-6 max-w-7xl">
-
-          {/* Hero logo group */}
-          <div className="flex items-center mb-6 md:mb-8">
-            <Image
-              src="/SV_Logo.jpeg"
-              alt="Stuk Verdriet"
-              width={220}
-              height={279}
-              className="object-contain shrink-0 w-[100px] sm:w-[145px] md:w-[195px] h-auto mix-blend-screen"
-            />
-          </div>
-
-          {/* Separator */}
-          <div className="w-56 sm:w-72 h-px bg-white/20 mb-5 md:mb-6" />
+        <div className="container relative z-10 mx-auto px-6 max-w-7xl pt-20">
 
           {/* Tagline */}
-          <div className="max-w-xl drop-shadow-lg">
-            <p className="font-serif text-[18px] sm:text-[21px] md:text-[24px] text-white leading-[1.5] font-semibold max-w-md">
-              Palliatieve zorg: Hulp van rouw bij leven. Tussen leven, loslaten en dat wat overblijft
-            </p>
-            <p className="mt-3 sm:mt-4 text-[13px] sm:text-[14px] md:text-[15px] text-white/90 leading-[1.8] font-medium max-w-[340px]">
-              Palliatieve zorg is gericht op kwaliteit van leven, verwerking en emotionele steun. Begeleiding is niet alleen voor de zorgbehoevende maar ook voor naasten.
-            </p>
+          <div className="max-w-2xl drop-shadow-xl space-y-4">
+            <h1 className="font-serif text-[22px] sm:text-[26px] md:text-[32px] text-white leading-[1.4] font-semibold">
+              Palliatieve zorg: Tussen leven, loslaten en dat wat over blijft.
+            </h1>
+            <div className="w-24 sm:w-32 h-[3px] bg-[#78A179]" />
           </div>
         </div>
-
       </section>
+
+      {/* ── Explainer / Mission ─────────────────────────────────── */}
+      <PalliatieveZorgExplainer />
 
       {/* ── Episodes ─────────────────────────────────────────── */}
       <section className="container mx-auto px-6 max-w-7xl pt-16 pb-24 space-y-10">
@@ -187,7 +156,7 @@ export default async function HomePage() {
             </div>
           </div>
           <a
-            href="https://www.instagram.com/stukverdriet/"
+            href="https://www.instagram.com/stuk.verdriet/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 border-2 border-[#78A179] text-[#78A179] hover:bg-[#78A179] hover:text-white px-5 py-2 rounded-full text-sm font-bold transition-all duration-300 w-fit"
@@ -196,36 +165,7 @@ export default async function HomePage() {
           </a>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-1 sm:gap-2">
-          {(instagramPosts.length > 0 ? instagramPosts : placeholderPosts).map((post, i) => {
-            const isReal = instagramPosts.length > 0
-            const src = isReal ? (post as InstagramPost).media_url : (post as typeof placeholderPosts[0]).img
-            const caption = isReal ? (post as InstagramPost).caption : (post as typeof placeholderPosts[0]).quote
-            const href = isReal ? (post as InstagramPost).permalink : 'https://www.instagram.com/stukverdriet/'
-            return (
-              <a
-                key={i}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative aspect-square overflow-hidden bg-gray-900 block"
-              >
-                <Image
-                  src={src}
-                  alt={`Instagram post ${i + 1}`}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-5">
-                  <p className="text-white text-center text-xs sm:text-sm font-light leading-relaxed line-clamp-5 whitespace-pre-line drop-shadow">
-                    {caption}
-                  </p>
-                </div>
-              </a>
-            )
-          })}
-        </div>
+        <InstagramGrid />
       </section>
 
     </div>

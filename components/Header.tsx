@@ -28,20 +28,16 @@ export default function Header() {
       <header className="absolute top-0 left-0 w-full z-50 py-6">
         <div className="container mx-auto px-6 max-w-7xl flex justify-between items-center">
 
-          {/* Logo — hidden on home page (logo is shown in the hero there) */}
-          {pathname !== '/' ? (
-            <Link href="/" className="flex items-center">
-              <Image
-                src="/SV_Logo.jpeg"
-                alt="Stuk Verdriet logo"
-                width={210}
-                height={266}
-                className="object-contain shrink-0 w-[130px] md:w-[195px] h-auto mix-blend-screen"
-              />
-            </Link>
-          ) : (
-            <div />
-          )}
+          {/* Logo */}
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo_stukverdriet.png"
+              alt="Stuk Verdriet logo"
+              width={300}
+              height={380}
+              className="object-contain shrink-0 w-[160px] md:w-[280px] h-auto drop-shadow-md brightness-0 invert"
+            />
+          </Link>
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8 font-semibold text-sm text-white">
@@ -94,11 +90,11 @@ export default function Header() {
         <div className="flex items-center justify-between px-6 pt-6 pb-8 border-b border-white/10">
           <Link href="/" className="flex items-center" onClick={() => setOpen(false)}>
             <Image
-              src="/SV_Logo.jpeg"
+              src="/logo_stukverdriet.png"
               alt="Stuk Verdriet logo"
               width={52}
               height={66}
-              className="object-contain brightness-0 invert opacity-80 shrink-0 mix-blend-screen"
+              className="object-contain brightness-0 invert opacity-90 shrink-0"
             />
           </Link>
           <button
