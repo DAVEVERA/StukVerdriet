@@ -26,6 +26,7 @@ const socials = [
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/archief', label: "Thema's" },
+  { href: '/in-de-media', label: 'In de media' },
   { href: '/gids', label: 'Lotgenoten' },
   { href: '/bijsluiter', label: 'De Bijsluiter' },
 ]
